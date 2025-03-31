@@ -54,4 +54,4 @@ Now, let's run it for just a second. That's a thousand runs, and we have a 49.99
 
 Modern cryptography-- what keeps your passwords secure-- is based on this "probably correct" type of algorithm. Are you alright with that accuracy? The entirety of the world's financial systems sure are.
 
-Also, pat yourself on the back! This "talk" was actually a proof of my favorite result from my theory of computation class (Pitt CS 2110): RP is in NP. That's a PhD class about theoretical computer science. And you understand everything perfectly! Awesome stuff!
+Also, pat yourself on the back! This "talk" was actually a proof of my favorite result from my theory of computation class (Pitt CS 2110): NP is in PP. That's a PhD class about theoretical computer science. And you understand everything perfectly! Awesome stuff!
