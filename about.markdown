@@ -3,7 +3,7 @@ layout: page
 title: About
 permalink: /about/
 ---
-"Zero knowledge" is convincing someone that you know something without actually telling them what it is. It's a play on words.
+"Zero knowledge" is convincing someone that you know something without actually telling them what it is. It's also a play on words.
 
 - John 15:18
 - Pittsburgh, PA 
