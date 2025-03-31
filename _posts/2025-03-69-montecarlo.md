@@ -3,7 +3,7 @@ layout: post
 title: "How good is good enough?"
 date: 2025-03-15
 ---
-# Decidability and Tractability
+# Decidability and Tractability, Polynomial Hierarchy
 I think computer science is pretty neat. What I find neat about it is that a correct algorithm never screws up, whether you do it on one "thing" or a billion of them. When I took a semester of linear algebra last year, I had pretty good intuiton about vector spaces (maybe two semesters of physics weren't such a waste after all). A matrix maps one vector space to another, and if you can invert that matrix, you can undo that mapping. I can sit back in my chair, close my eyes, and "see" the matrix spinning and flipping and squishing vectors. Give me five vectors, and I can "see" if they're perpendicular.
 
 However, I still bombed my tests and finished with a C+ in the course. That's because I would always screw up things like Gauss-Jordan elimination-- I understand exactly how it works, but I'd always say some nonsense like saying 4 x 4 = 12. Just incorrectly doing the algorithm. I'm not a computer, so doing algorithms isn't my strong suit.
