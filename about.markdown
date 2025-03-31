@@ -1,6 +1,6 @@
 ---
 layout: page
-# title: About
+title: About
 permalink: /about/
 ---
 - John 15:18
