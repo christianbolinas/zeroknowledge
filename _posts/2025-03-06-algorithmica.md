@@ -27,10 +27,14 @@ internet for more algorithms content.
 I finally found a good one. It's called Algorithmica. It's written by a Russian fellow by the name of Sergey
 Slotin. You can read it for free on the internet.
 
-Before I start the review, I feel like I should mention that I'm writing this on emacs. (I was using Neovim,
-but that's too mainstream), and I'm listening to a live recording of Wretched World by Converge, with Chelsea Wolfe on
-vocals right now. I've also started writing in cursive again, so people know that I went to Catholic school. I'm not
-sure what the intended takeaways of that are, but I feel like you should know that regardless.
+Before I start the review, I feel like I should mention that 
+
+- I'm writing this on emacs. (I was using Neovim, but that's too mainstream)
+- I'm listening to a live recording of Wretched World by Converge, with Chelsea Wolfe on
+vocals right now. 
+- I've started writing in cursive again, so people know that I went to Catholic school. 
+
+I'm not sure what the intended takeaways of any of those are, but I feel like you should know them regardless.
 
 ## Summary
 I'm one of those spacey, head-in-the-clouds types of dudes who likes thinking really hard about pointless

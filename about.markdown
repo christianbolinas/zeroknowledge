@@ -4,8 +4,7 @@ title: About
 permalink: /about/
 ---
 - John 15:18
-- Computer Science undergrad-ish
-- Pittsburgh, PA (no, not that school, the other one)
+- Pittsburgh, PA 
 - Recreational LeetCoder
 - Pledgemaster Emeritus
 - 34 ACT (hungover, did not study)
