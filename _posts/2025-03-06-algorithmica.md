@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Book Review: Algorithmica"
-date: 2025-03-30
+date: 2025-03-06
 ---
 Sorry for the lack of writing! I've been busy writing. I've been working on my compiler textbooklet and my 
 fiction book. The first is kind of like Crafting Interpreters, but even simpler, because I strongly feel 
