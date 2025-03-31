@@ -53,3 +53,5 @@ Now let's try it three times, with new random assignments, and take the majority
 Now, let's run it for just a second. That's a thousand runs, and we have a 49.999%^1000 chance of being incorrect. Run those numbers: that's better than a 0.000...0001% chance of incorrectness, with **300 zeros**. One second, for 300 nines-worth of accuracy, versus until after the heat death of the universe. That's a worthwhile tradeoff.
 
 Modern cryptography-- what keeps your passwords secure-- is based on this "probably correct" type of algorithm. Are you alright with that accuracy? The entirety of the world's financial systems sure are.
+
+Also, pat yourself on the back! This "talk" was about my favorite result from my theory of computation class: RP is in NP. That's a PhD class about theoretical computer science. And you understand everything perfectly! Awesome stuff!
