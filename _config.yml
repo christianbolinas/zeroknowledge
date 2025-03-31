@@ -27,6 +27,13 @@ url: "https://christianbolinas.github.io" # the base hostname & protocol for you
 
 # Build settings
 theme: minima
+# remote_theme: jekyll/minima
+
+# plugins:
+#  - jekyll-remote-theme
+
+minima:
+  skin: dark 
 # plugins:
 # - jekyll-feed
 
