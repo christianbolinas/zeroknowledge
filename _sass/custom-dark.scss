@@ -1,0 +1,12 @@
+// Override Minima variables for dark mode
+$background-color: #121212 !default;
+$text-color:      #e0e0e0 !default;
+$brand-color:     #6db8ff !default;
+$link-color:      $brand-color !default;
+$border-color:    #333 !default;
+
+// Dark syntax highlighting (optional)
+$syntax-highlighting-theme: "dark" !default;
+
+// Apply changes
+@import "minima";
