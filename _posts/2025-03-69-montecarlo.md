@@ -18,7 +18,7 @@ So, stay with me, we can compare two names in a billionth of a second. The base-
 
 It just so happens that looking through the phonebook is a problem that there's a **fast** algorithm to solve. There are a lot of important problems that we **don't think** think there could **ever possibly be** an algorithm to solve that's both fast and always correct. This is called the P vs NP problem-- it's an open question that asks "does us being able to check a solution quickly imply that it's possible to solve it just as quickly?" We don't think so, because there are a lot (thousands) of problems from business, to finance, to healthcare, to engineering, to games like Candy Crush or sudoku that we can mathematically prove are equally difficult to one another, so if we can solve one, we can solve them all, but we haven't found a fast, always-correct algorithm for a single one. Seriously, there are a lot of things that're equally hard:
 
-- Given a chain of amino acids, determine the shape of the protein they naturally fold themselves into. (We could probably cure a lot of cancers, if we could do this.)
+- Given a chain of amino acids, determine the shape of the protein they naturally fold themselves into. (We could probably cure a lot of diseases if we could do this quickly.)
 - Given a bunch of resources (let's say barrels of wheat, barley, and hops, water, electricity, and warehouse space for a brewery), determine how much of our budget we should spend on each to maximize profit. (This is important for business.)
 - Given a description of what an electrical circuit should do, make it as small as possible. (This is important for making fast computers as cheaply as possible.)
 - Given a Candy Crush or Sudoku game, win. (This isn't important.)
