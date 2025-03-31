@@ -37,7 +37,7 @@ As I said before, solving 3-SAT is just guess-and-check (with some incredibly so
 
 Count how many tries you could need for two variables, then three variables, then four... you'll see 4, then 8, then 16, then 32 for five variables, then 64 for six... the time this guess-and-check takes is proportional to 2 (because there are two choices for each variable-- true or false) **raised to the number of variables you have**. And that's assuming you can instantly check whether or not that assignment actually satisfies the formula, because I'm in a good mood today.
 
-# Chernoff Bounds and Casinos
+# Chernoff Bounds and Monte Carlo Algorithms
 If you took an exam, and you wanted a 100, and you got a 99.999999999% (that's nine nines after the decimal place) because your professor didn't like your handwriting, or something, you'd probably be fine with that. In the same way, if I could solve 3-SAT really quickly with that accuracy, that'd be pretty cool. So **I'll do that right now: I'll give you an algorithm to solve 3-SAT to 99.999999999% (the same nine nines after the decimal place) accuracy in the blink of an eye**.
 
 You ready? Here's the algorithm. What we'll do is randomly assign every variable to true or false, and then check if the whole formula evaluates to true. If it does, say that (obviously), and if it doesn't, flip a coin-- heads, true, tails, false.
