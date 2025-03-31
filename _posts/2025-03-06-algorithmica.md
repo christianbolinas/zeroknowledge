@@ -3,16 +3,11 @@ layout: post
 title: "Book Review: Algorithmica"
 date: 2025-03-06
 ---
-Sorry for the lack of writing! I've been busy writing. I've been working on my compiler textbooklet and my 
-fiction book. The first is kind of like Crafting Interpreters, but even simpler, because I strongly feel 
-that compilers aren't that complicated (until you get into the theory behind optimization. Then that shit's
-black magic).
-
 I read a lot. I'm in a book club (because, at 24, raging face with the actives in your old frat is really, 
 really weird, even if you're still in the same town as your chapter). Fiction books are okay. I haven't really
 read a mind-blowing one since Skippy Dies. 
 
-The main things I read are computer science textbooks, because I'm a massive nerd. I've made a routine out of
+The main things I read are computer science textbooks. I've made a routine out of
 reading them before bedtime. I'd watch YouTube videos instead, but I'm too ADHD to sit and pay attention to 
 some talking head yap for an entire ten-minute video. My favorite is Introduction to Algorithms (CLRS). 
 Algorithms, A Creative Approach is almost as good. I've read some great ones on other algorithm-related things, 
@@ -20,12 +15,9 @@ like Crafting Interpreters, to learn compiler basics and Haskell From First Prin
 behind functional programming, but in general, I like reading about algorithms the most. 
 
 The issue is that CLRS is the big daddy end boss of algorithms books, and I've already read it, front to back,
-three times (After I took data structures, after I took undergrad algorithms, and after I took grad algorithms.
+three times (After I took data structures, after undergrad algorithms, and after grad algorithms.
 I told you I was a massive nerd), and I understand, like, 45% of it now. So I've been looking all over the 
-internet for more algorithms content. 
-
-I finally found a good one. It's called Algorithmica. It's written by a Russian fellow by the name of Sergey
-Slotin. You can read it for free on the internet.
+internet for more algorithms content. I finally found a good one. It's called Algorithmica. It's written by a Russian fellow by the name of Sergey Slotin. You can read it for free on the internet.
 
 Before I start the review, I feel like I should mention that 
 
@@ -36,10 +28,10 @@ vocals right now.
 
 I'm not sure what the intended takeaways of any of those are, but I feel like you should know them regardless.
 
-## Summary
-I'm one of those spacey, head-in-the-clouds types of dudes who likes thinking really hard about pointless
+# Summary
+I'm one of those spacey, head-in-the-clouds type of dudes who likes thinking really hard about pointless
 theoretical shit for its own sake. I'll try and avoid that here, because this is already a review of a 
-textbook that I read for fun. I'll do my best to only touch on important things that might have practical 
+textbook that I read for fun-- I'll do my best to only touch on important things that might have practical 
 takeaways. 
 
 The premise behind Algorithmica is that asymptotic complexity analysis-- Akra-Bazzi and all that fun stuff--
