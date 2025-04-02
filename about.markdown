@@ -12,8 +12,9 @@ permalink: /about/
 - Recreational LeetCoder
 - 34 ACT (hungover, didn't study)
 - Can play Cliffs of Dover on guitar (serious)
+- Can do a great El Debarge impression (also serious)
 - 5'8 190 17″ arms 30″ waist (at one point)
+- Winner on 100NL tables (also at one point)
 - Quinn Fabray stan
 - Got cut from high school math league team
 - hjkl enthusiast
-- Winner on 100NL tables (at one point)
