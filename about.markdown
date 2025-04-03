@@ -8,6 +8,7 @@ permalink: /about/
 - Sits and stands on Sunday mornings
 - Pledgemaster Emeritus
 - Pittsburgh, PA
+- 2016 SR5 with custom grill and General Grabbers
 - Dental school admit
 - Recreational LeetCoder
 - 34 ACT (hungover, didn't study)
