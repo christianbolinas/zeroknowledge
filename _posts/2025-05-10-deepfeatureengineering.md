@@ -6,7 +6,7 @@ date: 2025-05-10
 # And that's what you missed on Glee!
 As an aside, I got my report card a few days ago! Because I didn't fail three or more classes this past semester, after four sorta-fun semesters and with a thoroughly mediocre 3.2 GPA, I've officially completed the requirements for the BS in Computer Science. 
 
-Today, we've got a quick demo of a basic variant of my favorite neural network architecture. The accompanying notebook is on my GitHub: ![https://github.com/christianbolinas/autoencoder-demo](https://github.com/christianbolinas/autoencoder-demo)
+Today, we've got a quick demo of a basic variant of my favorite neural network architecture. The goal is to show how a feedforward neural network works for classification tasks: it sophisticatedly engineers features for a _linear_ classifier. The accompanying notebook is on my GitHub: `https://github.com/christianbolinas/autoencoder-demo`
 
 # BYE SISTER, but for PCA
 In my internship this past semester (part-time, for-credit, that the CS department was nice enough to hook me up with), we were working for the NOAA on a pretty open-ended analysis task involving noisy, high-dimension, and sparse computational biology data with complex nonlinear interactions between features. The data was giving the tools the biologists were familiar with some trouble. Our boss said that principal component analysis, which is a linear dimensionality reduction technique, was the tool people in the domain used for this task and pointed us to it as a reasonable starting point.
@@ -27,6 +27,8 @@ MNIST is a dataset of 28x28 handwritten digits. It's commonly used to benchmark 
 ![A handwritten 5]({{ site.baseurl }}/assets/images/5.png)
 
 I'm not going to use my internship's data because it's not mine to show off on the internet, but like MNIST, the data was noisy and featured interactions between features (columns) that affected a datapoint's label. In a handwritten digit, the pixels' values _also_ interact with each other to change what digit an image represents. For that reason, I think MNIST is a good proxy for my internship data: both have complex relationships between input variables that affect the response. While the internship data had 90,000 features per datapoint and 2,000 datapoints, making it even messier than the image data we'll be working with today, I think it's a reasonable proxy that doesn't require spending too much time wrangling.
+
+> Also, the internship task had a much less well-defined goal. It was more anomaly detection-ish than anything.
 
 # Methodology
 Our methodology is going to be:
