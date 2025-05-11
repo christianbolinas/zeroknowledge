@@ -24,7 +24,7 @@ Today, we're going to be demoing the ability of autoencoders to automagically en
 # What is the MNIST dataset? Why not just use the data from your internship?
 MNIST is a dataset of 28x28 handwritten digits. It's commonly used to benchmark machine learning algorithms. The 784 features for each datapoint are the 784 pixels in each image (from 28*28=784), and each feature's value is how dark it was in the grayscale image. They look like this:
 
-![](./featureengineering-images/5.png)
+![](5.png)
 
 I'm not going to use my internship's data because it's not mine to show off on the internet, but like MNIST, the data was noisy and featured interactions between features (columns) that affected a datapoint's label. In a handwritten digit, the pixels' values _also_ interact with each other to change what digit an image represents. For that reason, I think MNIST is a good proxy for my internship data: both have complex relationships between input variables that affect the response. While the internship data had 90,000 features per datapoint and 2,000 datapoints, making it even messier than the image data we'll be working with today, I think it's a reasonable proxy that doesn't require spending too much time wrangling.
 
@@ -43,7 +43,7 @@ Along the way, we'll provide some visualizations to help us get a handle on what
 # Naively-fit Linear Classifier
 First, just using a Python library, we'll fit a simple linear classifier to the raw data with an epoch of stochastic gradient descent. We won't use any regularization: I have a suspicion that lasso regularization would make the model "ignore" "unimportant" pixels and greatly increase performance-- this is about nonlinear dimensionality reduction, not logistic regression hyperparameter tuning. That got us 92.6% performance after fitting for 18 seconds; here's where the model screwed up along the way.
 
-![](./featureengineering-images/lr-goofs.png)
+![](lr-goofs.png)
 
 # PCA + Naively-fit Linear Classifier
 I shrank the data down to 8x8 (from 28x28 originally) with PCA. That got us 91.7% performance after fitting for 0.18 seconds. I don't think it's worth discussing because accuracy went _down_; shrinking down to 10x10 and 20x20 was similarly bad.
@@ -116,7 +116,7 @@ model_acc = 100 * ((preds == Y_te_pt).sum().item() / len(preds)) # functional!
 
 Overall, this fit in under four minutes and achieved 99.1% accuracy. That's an undeniable improvement over the linear model: it should show that we can do much better than 92%.
 
-![](./featureengineering-images/thanos.png)
+![](thanos.png)
 
 For reference, the best any lab's gotten is 99.87%: `https://paperswithcode.com/sota/image-classification-on-mnist`.
 
@@ -211,7 +211,7 @@ class Autoencoder_64(nn.Module):
 
 Let's take a look at the 8x8 images the autoencoder made, as well as its reconstructions. As you can see, while the squished representations don't look like a 5 or a 0, you can see from the reconstructions that the model did successfully learn a squished representation that captures important information!
 
-![](./featureengineering-images/ae-reconstruction.png)
+![](ae-reconstruction.png)
 
 Here's PCA doing the same thing, for reference. You'll see that the reconstruction is much lower-quality: you, as a human, can see what the digits are, but the weird, swirly patterns around the edges, as well as the gray background, clearly were throwing the model off.
 
@@ -220,7 +220,7 @@ Here's PCA doing the same thing, for reference. You'll see that the reconstructi
 With the autoencoder automatically engineering nonlinear features, the linear classifier achieved __94.2% accuracy__.
 
 # Conclusion
-![](./featureengineering-images/lfg.png)
+![](lfg.png)
 
 I think that there's plenty more gains to be had. I made the autoencoder, which was the core of this little inference pipeline, in a pretty careless fashion:
 
