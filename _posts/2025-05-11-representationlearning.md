@@ -32,6 +32,7 @@ Because I'm too lazy to find and clean and preprocess more data, we were working
 1. Next, I fit another logistic regression to the 64 principal components (__as found with the unlabeled data__) of that same subset of labeled data.
 1. Last, I fit yet another logistic regression to the best 64-dimension latent representation (as found with the autoencoder, again __as found with the unlabeled data__) to that same subset of labeled data.
 
+# Results: PCA vs Autoencoders
 Here's what I found:
 
 | Preprocessing Technique       | Logistic Regression Test Set Accuracy |
@@ -40,14 +41,13 @@ Here's what I found:
 | PCA, 64 components            | 90.3%                                 |
 | Autoencoder, 64 dimensions    | 93.8%                                 |
 
-# Results: PCA vs Autoencoders
 With the null hypothesis that an autoencoder wouldn't increase model test set classification accuracy, we can confidently reject that H_0. You're welcome to compute the z-scores ;)
 
 ![Like a boss.]({{ site.baseurl }}/assets/images/boss.png)
 
 Here's a 2-D visualization of what a subset of the test set looks like. We want to see clear clusters of colors that you could draw boundaries between.
 
-> I know, I used logistic regression, not a SVM. So the metaphor isn't inaccurate. Sue me.
+> I know, I used logistic regression, not a SVM. So the metaphor isn't accurate. Sue me.
 
 ![t-SNE: No Transformation]({{ site.baseurl }}/assets/images/tsne-notrans.png)
 
