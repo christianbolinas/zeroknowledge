@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Representation Learning: inference for nothing and your accuracy for free"
+title: "Representation Learning: Inference for nothing and your accuracy for free"
 date: 2025-05-12
 ---
 This evening, I'll be talking about autoencoders. (Again.) I've been really liking unsupervised learning lately, apparently.
