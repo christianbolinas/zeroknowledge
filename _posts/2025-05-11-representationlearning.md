@@ -43,6 +43,8 @@ Here's what I found:
 
 With the null hypothesis that an autoencoder wouldn't increase model test set classification accuracy, we can confidently reject that H_0. You're welcome to compute the z-scores ;)
 
+> I also fit a SVM with a RBF kernel to _half_ the labeled data we originally had. That got __96.9% accuracy__, which, again, results in a statistically significant increase in test set accuracy over the best logistic regression model, _while training with half the data_. The same SVM fit to the _entire_ training set got 97.9% accuracy. Sickening.
+
 ![Like a boss.]({{ site.baseurl }}/assets/images/boss.png)
 
 Here's a 2-D visualization of what a subset of the test set looks like. We want to see clear clusters of colors that you could draw boundaries between.
