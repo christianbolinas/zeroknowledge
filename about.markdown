@@ -3,8 +3,6 @@ layout: page
 title: About
 permalink: /about/
 ---
-![Your humble author]({{ site.baseurl }}/assets/images/me.png)
-
 "Zero knowledge" is convincing someone that you know a secret without actually telling them what it is. It's also a play on words.
 
 - Sits and stands on Sunday mornings
