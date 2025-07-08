@@ -3,26 +3,26 @@ Reverse Engineering a Streaming Website
 Christian Bolinas 7 July 2025 
 =======================================
 
-=== TONIGHT ===
+=== UPDATES, BEFORE I GET STARTED ===
 
-Before I start the post, I want to say that I don't condone illegal activity. You should support artists who work hard
-to make art for us to enjoy!
+Sorry for the lack of interesting content! I'm working on publishing a package for a new statistical learning
+"algorithm" (metaheuristic) I came up with. I'm also working on a compiler for another new programming language. Neither
+the compiler nor the language are remarkable in any way, but besides ricing my Emacs, LeetCoding, summer school, and
+applying to jobs, that's what I've been up to.
 
-(I'm ditching the blog formatting because I'm writing a blog post about doing potentially-illegal stuff with computers,
-not the usual flashy, highfalutin, academical machine learning stuff, and I want this to be displayed like the other
-great security papers: ASCII bytes but we're trying to make it look nice, not giving you the straight up org-mode file,
-120 columns, formatted with `gggqG`, which is a real key combo in this text editor.)
-
-Before I get started, apologies for the lack of interesting content. I'm working on publishing a package for a new
-statistical learning "algorithm" (metaheuristic) I came up with. I'm also working on a compiler for another new
-programming language. Neither the compiler nor the language are remarkable in any way, but besides ricing my Emacs,
-LeetCoding, summer school, and applying to jobs, that's what I've been up to.
+I'm ditching the blog formatting /just for this post/ because I'm writing a blog post about doing potentially-illegal
+stuff with computers, not the usual flashy, highfalutin, academical machine learning stuff, so I want this to be
+displayed like the other great security papers: ASCII bytes but we're trying to make it look sorta styled instead of
+giving you the straight up org-mode file, 120 columns, formatted with `gggqG`, which is a real key combo in this text
+editor.
 
 So, this blog is called "Zero Knowledge." I thought it was a funny pun to name a blog about learning computer science.
 I don't know much algebra or number theory, but I took a class on cryptography and I like the complexity theory side of
-it a lot. I thought it was kinda wack that I named my blog about a cryptography/security concept but don't have any of
-that kind of content on there. So, this evening, we'll reverse engineer a website's video streaming system and use it to
-download the stream contents they really don't want us to download. 
+it a lot, and I thought it was kinda wack that I named my blog about a cryptography/security concept but don't have any
+of that kind of content on there. So, this evening, we'll reverse engineer a website's video streaming system and use it
+to download the stream contents they really don't want us to save offline.
+
+Before I start the post, I want to say that I don't condone illegal activity. Don't get your WiFi shut off...
 
 === HOW DO WEBSITES STREAM VIDEO? ===
 
@@ -45,9 +45,9 @@ few seconds, send another guy a few seconds, send you the next few seconds... so
 
 < ---------------------------------------- TIME ---------------------------------------- >
 
-Well, in reality, you might not even have the same server for the first three seconds and the next three seconds. Kinda
-like how the gallon jug of milk from the store probably came from more than one cow. But this is how streaming works:
-it's a /stream/, not one big chunk.
+Well, in reality, this is an oversimplification. You might not even have the same server for the first three seconds and
+the next three seconds. Kinda like how the gallon jug of milk from the store probably came from more than one cow. But
+this is how streaming works: it's a /stream/, not one big chunk.
 
 === HOW I HACKED 123MOVIES'S STREAMING PROTOCOL ===
 
@@ -56,7 +56,7 @@ get go, so I knew that they had to be breaking them into those chunks I describe
 they were split up into, I monitored the HTTP traffic between my browser and the server.  I just manually connected to
 the website with Firefox, opened up "developer tools," and just stared at what kind of internet accesses the browser was
 making as I streamed the video. Weirdly, I saw a pattern of `page-1.html`, then `page-2.html` being downloaded and
-scroll by as the video played.
+scroll by as it played. That's fishy.
 
 2. Figure out what the HTMLLY was going on. HTML, as most tech-y people know, isn't a video. The obvious thing to do is
 to just click on the HTML file and look at the text contents.  That's `.mp4` or `.avi`. HTML is the human-readable text
@@ -75,8 +75,8 @@ G@0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿
 Definitely not the human-readable HTML you see when you "inspect element" (to change your report card). If you've ever
 tried to open something that isn't text (like a video or a computer program) in Notepad or a similar text editor, you
 know that it looks like this because it's binary, but the text editor is still trying to interpret it as text (which is
-a specific kind of binary: `A` is 65, and `t` is 74, but plenty of binary numbers aren't displayable: 8 is a backspace).
-Well, videos are encoded in binary. I wondered if those "HTML" files were really sections of video.
+a specific encoding of binary: for example, `A` is 65, and `t` is 74, but plenty of binary numbers aren't displayable: 8
+is a backspace). Well, videos are encoded in binary. I wondered if those "HTML" files were really sections of video.
 
 3. Check if that was actually the case. I tried `curl`ing one of the HTML files that the website was downloading as I
 streamed: `curl -o test-segment.bin <THE URL/page-1.html>`, then ran `file test-segment.bin`:
@@ -124,4 +124,10 @@ files, automatically (there were 526 in total, for a 43-minute episode), then b)
 video file format, and finally c) stitch them together.
 
 I just used a program called ffmpeg to do all that: `ffmpeg -i <THE URL FOR index.m3u8> -c copy episode.mp4`, and after
-a few minutes downloading, I had my episode. 
+a few minutes downloading, I had my episode.
+
+=== WHAT I LEARNED ===
+
+So, with a little bit of "inspect element"-level noticing and a few simple shell commands for some of the most
+fundamental computer programs, I bypassed the streaming website's "clever" "protection" scheme. Much easier than I
+expected. I guess sometimes, the solution isn't even hidden in plain sight: it just isn't even really hidden at all.
