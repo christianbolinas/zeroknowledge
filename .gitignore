@@ -1,4 +1,7 @@
 _site
+_garbage
+_org
+_drafts
 .sass-cache
 .jekyll-cache
 .jekyll-metadata
