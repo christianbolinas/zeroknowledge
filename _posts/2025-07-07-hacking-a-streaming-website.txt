@@ -1,6 +1,7 @@
 Reverse Engineering a Streaming Website 
 
-Christian Bolinas 7 July 2025 
+Christian Bolinas 
+7 July 2025 
 =======================================
 
 === UPDATES, BEFORE I GET STARTED ===
