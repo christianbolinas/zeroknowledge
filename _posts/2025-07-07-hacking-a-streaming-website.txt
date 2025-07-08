@@ -1,0 +1,127 @@
+Reverse Engineering a Streaming Website 
+
+Christian Bolinas 7 July 2025 
+=======================================
+
+=== TONIGHT ===
+
+Before I start the post, I want to say that I don't condone illegal activity. You should support artists who work hard
+to make art for us to enjoy!
+
+(I'm ditching the blog formatting because I'm writing a blog post about doing potentially-illegal stuff with computers,
+not the usual flashy, highfalutin, academical machine learning stuff, and I want this to be displayed like the other
+great security papers: ASCII bytes but we're trying to make it look nice, not giving you the straight up org-mode file,
+120 columns, formatted with `gggqG`, which is a real key combo in this text editor.)
+
+Before I get started, apologies for the lack of interesting content. I'm working on publishing a package for a new
+statistical learning "algorithm" (metaheuristic) I came up with. I'm also working on a compiler for another new
+programming language. Neither the compiler nor the language are remarkable in any way, but besides ricing my Emacs,
+LeetCoding, summer school, and applying to jobs, that's what I've been up to.
+
+So, this blog is called "Zero Knowledge." I thought it was a funny pun to name a blog about learning computer science.
+I don't know much algebra or number theory, but I took a class on cryptography and I like the complexity theory side of
+it a lot. I thought it was kinda wack that I named my blog about a cryptography/security concept but don't have any of
+that kind of content on there. So, this evening, we'll reverse engineer a website's video streaming system and use it to
+download the stream contents they really don't want us to download. 
+
+=== HOW DO WEBSITES STREAM VIDEO? ===
+
+Websites can stream video by just hosting a `.mp4` file on their server and send the whole dang thing over to you when
+you ask for it. In practice, though, things are a little bit more complicated than that: it'd make no sense for the
+server to get bogged down trying to give you minutes worth of video when other people are waiting. So it'll send you a
+few seconds, send another guy a few seconds, send you the next few seconds... so on and so forth.
+
+
+
+    +--------+                                   also prob love island +--------------+
+    |  SITE  |----------------------+----------------------------------| SOMEONE ELSE |
+    +--------+                      | prob some garbage like           +--------------+
+        |                         +-----+  love island idk
+        | some glee               | YOU |
+        |                         +-----+
+     +----+
+     | ME |
+     +----+
+
+< ---------------------------------------- TIME ---------------------------------------- >
+
+Well, in reality, you might not even have the same server for the first three seconds and the next three seconds. Kinda
+like how the gallon jug of milk from the store probably came from more than one cow. But this is how streaming works:
+it's a /stream/, not one big chunk.
+
+=== HOW I HACKED 123MOVIES'S STREAMING PROTOCOL ===
+
+1. Figure out how they stream. From the buffering that happens, I know they aren't just sending me a fat `.mp4` from the
+get go, so I knew that they had to be breaking them into those chunks I described. To figure out what kind of chunks
+they were split up into, I monitored the HTTP traffic between my browser and the server.  I just manually connected to
+the website with Firefox, opened up "developer tools," and just stared at what kind of internet accesses the browser was
+making as I streamed the video. Weirdly, I saw a pattern of `page-1.html`, then `page-2.html` being downloaded and
+scroll by as the video played.
+
+2. Figure out what the HTMLLY was going on. HTML, as most tech-y people know, isn't a video. The obvious thing to do is
+to just click on the HTML file and look at the text contents.  That's `.mp4` or `.avi`. HTML is the human-readable text
+that that contains what webpages say, so its contents should have more clues as to how the streaming works-- I thought
+they'd probably have the link to where the video files were located. However, when I looked at the content of that HTML
+file, I saw that it definitely /was not/ that:
+
+G@0�����������������������������������������������������������������������������������������������������������������������������������������������������������������������
+���6��=GO�0����������������������������������������������������������������������������������������������������������������������������������������������������������������������0GA����!�%
+�gB������Z����}
+p���h�<�$���?)���泯4667129827152938927�%�@��N(5���{�zF����'����%�0D������yn���~>}�?{��砢���O��^��b�D�7�N�GI�Ǥ���W�z��|b��~-��h��]���M,E�T���g�x�t��-�"M1�"u2f7֮�Z�F���yd,z'υ���
+2�R�C[aQ�HkϕO�U���r��\��録*J�KV�ؘ=����rx�#����K]=-uM����Y\%1������?��B�o��v7�Z�lϛ
+�����l�f�G�w������բf\��ܳUa�^/�ԙ�O���
+%��m���~��������?z%Ay�D`J��b$J@�~�!�I�J�xԘզ��+IZkJ�uu�^���IΤ�Ꞟ�ZZZ"Q1�6'T�(H��k��� 
+
+Definitely not the human-readable HTML you see when you "inspect element" (to change your report card). If you've ever
+tried to open something that isn't text (like a video or a computer program) in Notepad or a similar text editor, you
+know that it looks like this because it's binary, but the text editor is still trying to interpret it as text (which is
+a specific kind of binary: `A` is 65, and `t` is 74, but plenty of binary numbers aren't displayable: 8 is a backspace).
+Well, videos are encoded in binary. I wondered if those "HTML" files were really sections of video.
+
+3. Check if that was actually the case. I tried `curl`ing one of the HTML files that the website was downloading as I
+streamed: `curl -o test-segment.bin <THE URL/page-1.html>`, then ran `file test-segment.bin`:
+
+test-segment.bin: MPEG transport stream data
+
+I know from an iCarly bit that MPEG is video, so I tried playing it with `ffplay test-segment.bin`. Sure enough, that
+was definitely a "...and that's what you missed on Glee!" so my guess about binary data was correct, and it was a
+segment of the episode I tried to stream. The website was naming the little video segments that get streamed "HTML"
+files, instead of a video file extension, probably to get around people downloading their streaming video files, like I
+did. I think that specific detail qualifies me for the "someone tried to stop me from doing something and I did it
+anyway" hacker achievement.
+
+4. Figure out how to download and squish all the short video segments together. I looked at the files that were
+downloaded *before* the fishy "HTML" files and saw "master.m3u8" and "index.m3u8". I `curl`'d the former:
+
+#EXTM3U #EXT-X-INDEPENDENT-SEGMENTS
+#EXT-X-STREAM-INF:BANDWIDTH=757500,CODECS="mp4a.40.2,avc1.42c01e",RESOLUTION=640x360,FRAME-RATE=24,VIDEO-RANGE=SDR,CLOSED-CAPTIONS=NONE
+/pl/H4sIAAAAAAAAAw3Oy3KDIBhA4VcCic7YZVS0tph6.VHYiZihEaNprWN4.mZ5Vt85jRrrYSCBh66eHnx0DTQeTwPxMFGhCt6qRG8FTAfMWz.2Kx0snzXXUDbSqVv..MTM58kqLhkNdFeRYja_Cmk2UvBHsFB6mghiHEuOnk3ve_8dCoaXH47XlSEz9a3Ne858SYwn7xSp2UaVk6LJOB1B00sUzvpWuJrwCFL5aNoQXi.PktNFgE0ayL8Kb8NFbHuJ.TKm9sndOf0guW149RSQx1VqyKuXJt1yYe32Mne4g69mA5fUr5WFvW9pJtHgitjsLB4OmDbcZDbi3bms79WzxueNt_lf2RXQ3vhRp9Jph8J_9lgSW0EBAAA-/7a67bab9038b6ca38d13b08cead24c49/index.m3u8
+#EXT-X-STREAM-INF:BANDWIDTH=2650108,CODECS="mp4a.40.2,avc1.64001f",RESOLUTION=1280x720,FRAME-RATE=24,VIDEO-RANGE=SDR,CLOSED-CAPTIONS=NONE
+/pl/H4sIAAAAAAAAAw3Oy3KDIBhA4VcCic7YZVS0tph6.VHYiZihEaNprWN4.mZ5Vt85jRrrYSCBh66eHnx0DTQeTwPxMFGhCt6qRG8FTAfMWz.2Kx0snzXXUDbSqVv..MTM58kqLhkNdFeRYja_Cmk2UvBHsFB6mghiHEuOnk3ve_8dCoaXH47XlSEz9a3Ne858SYwn7xSp2UaVk6LJOB1B00sUzvpWuJrwCFL5aNoQXi.PktNFgE0ayL8Kb8NFbHuJ.TKm9sndOf0guW149RSQx1VqyKuXJt1yYe32Mne4g69mA5fUr5WFvW9pJtHgitjsLB4OmDbcZDbi3bms79WzxueNt_lf2RXQ3vhRp9Jph8J_9lgSW0EBAAA-/7e39f90815d0cbca3fcb1178fb9fa803/index.m3u8
+#EXT-X-STREAM-INF:BANDWIDTH=5161697,CODECS="mp4a.40.2,avc1.640028",RESOLUTION=1920x1080,FRAME-RATE=24,VIDEO-RANGE=SDR,CLOSED-CAPTIONS=NONE
+/pl/H4sIAAAAAAAAAw3Oy3KDIBhA4VcCic7YZVS0tph6.VHYiZihEaNprWN4.mZ5Vt85jRrrYSCBh66eHnx0DTQeTwPxMFGhCt6qRG8FTAfMWz.2Kx0snzXXUDbSqVv..MTM58kqLhkNdFeRYja_Cmk2UvBHsFB6mghiHEuOnk3ve_8dCoaXH47XlSEz9a3Ne858SYwn7xSp2UaVk6LJOB1B00sUzvpWuJrwCFL5aNoQXi.PktNFgE0ayL8Kb8NFbHuJ.TKm9sndOf0guW149RSQx1VqyKuXJt1yYe32Mne4g69mA5fUr5WFvW9pJtHgitjsLB4OmDbcZDbi3bms79WzxueNt_lf2RXQ3vhRp9Jph8J_9lgSW0EBAAA-/9e523ae15b61dc766f5c818726881ecf/index.m3u8
+
+That's not too helpful. I'm not too huge into reading, but I saw "codecs," "mp4a," "RESOLUTION," and "FRAME-RATE" off
+the rip. It was definitely for a video, but I already  knew that, and it didn't have any links. The latter was the file
+downloaded just before the first "HTML" file. I know that "index.html" is generally the homepage of a static website, so
+I googled what a `.m3u8` was and learned that it's a text file that acts as a playlist for streaming media, particularly
+in HTTP live streaming. Here's index.m3u8:
+
+#EXTM3U #EXT-X-TARGETDURATION:6 #EXT-X-ALLOW-CACHE:YES #EXT-X-PLAYLIST-TYPE:VOD #EXT-X-VERSION:3 #EXT-X-MEDIA-SEQUENCE:1
+#EXTINF:5.005,
+https://aquaedgeventures.xyz/content/da85e04f9ed37d9d10ed9790fe90d1f0/7e39f90815d0cbca3fcb1178fb9fa803/page-0.html
+#EXTINF:5.005,
+https://aquaedgeventures.xyz/content/da85e04f9ed37d9d10ed9790fe90d1f0/7e39f90815d0cbca3fcb1178fb9fa803/page-1.html
+#EXTINF:5.005,
+https://aquaedgeventures.xyz/content/da85e04f9ed37d9d10ed9790fe90d1f0/7e39f90815d0cbca3fcb1178fb9fa803/page-2.html
+
+(and 523 more of those after.)
+
+That was exactly what I was looking for: a file that contains all the links to the "HTML" files/video segments.
+
+5. Figure out what to do with `index.m3u8`. I had the playlist, so I just somehow had to first a) download all the html
+files, automatically (there were 526 in total, for a 43-minute episode), then b) convert them all to the appropriate
+video file format, and finally c) stitch them together.
+
+I just used a program called ffmpeg to do all that: `ffmpeg -i <THE URL FOR index.m3u8> -c copy episode.mp4`, and after
+a few minutes downloading, I had my episode. 
