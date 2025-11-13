@@ -8,15 +8,18 @@ permalink: /about/
 - Sits and stands on Sunday mornings
 - Can play Cliffs of Dover on guitar (serious)
 - Can do a great El Debarge impression (also serious)
-- 5'8 190 17″ arms 30″ waist
+- 27-minute 5K (unfortunately also serious)
+- 5'8 190 17″ arms 30″ waist-- not a hybrid athlete at all
 - Pledgemaster Emeritus
-- Pittsburgh, PA
-- Linear in nonnegative parameters
+- Greater Philadelphia Biotech Corridor
+- Keeps IP proprietary
+- Finds nonlinear manifolds
 - 2016 SR5 with custom grill and General Grabbers
 - Recreational LeetCoder
 - 34 ACT (hungover, didn't study, not the smartest thing I've ever done)
-- Winner on 100NL tables (at one point)
+- Winner on 100NL tables (in a past life)
 - Quinn Fabray stan
 - Former high school math league participant (not AIME material)
 - Zoomer Emacs user
+- LaTeX is my favorite programming language
 - One-time dental school admit
