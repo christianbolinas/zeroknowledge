@@ -1,9 +1,3 @@
----
-layout: post
-title: "The Fast Fourier Transform and Kernels"
-date: 2025-11-24
----
-
 Blah blah I didn't use AI to write this, English or Python.  I did use AI
 alongside youtube videos to learn about the FFT algorithm Pants-on-head AI use
 bad. Thoughtful AI use good. Etc etc
@@ -74,8 +68,7 @@ plt.show()
 ```
 
 
-    
-![png](FFT-kernel_files/FFT-kernel_2_0.png)
+![png]({{ site.baseurl }}/assets/FFT-kernel_files/FFT-kernel_2_0.png)
     
 
 
@@ -120,7 +113,7 @@ plt.show()
 
 
     
-![png](FFT-kernel_files/FFT-kernel_4_0.png)
+![png]({{ site.baseurl }}/assets/FFT-kernel_files/FFT-kernel_4_0.png)
     
 
 
@@ -139,8 +132,7 @@ plt.show()
 
 
     
-![png](FFT-kernel_files/FFT-kernel_6_0.png)
-    
+![png]({{ site.baseurl }}/assets/FFT-kernel_files/FFT-kernel_6_0.png)
 
 
 Remember domain and range from middle school pre-algebra, where you learn that a
@@ -337,7 +329,7 @@ plot_frequency_domain(X_nft, SAMPLING_DURATION)
 
 
     
-![png](FFT-kernel_files/FFT-kernel_10_0.png)
+![png]({{ site.baseurl }}/assets/FFT-kernel_files/FFT-kernel_10_0.png)
     
 
 
@@ -657,17 +649,9 @@ plt.show()
 ```
 
 
-    ---------------------------------------------------------------------------
-
-    NameError                                 Traceback (most recent call last)
-
-    Cell In[9], line 1
-    ----> 1 X, y = sklearn.datasets.make_moons(random_state=69, noise=0.5)
-          3 def decision_boundary(model, model_name, ax, X, y):
-          4     RES = 400
     
-
-    NameError: name 'sklearn' is not defined
+![png]({{ site.baseurl }}/assets/FFT-kernel_files/FFT-kernel_19_0.png)
+    
 
 
 So, we'll now do a little experiment to see if we can't "kernelize" our Logistic
@@ -737,5 +721,8 @@ acc_raw = LogisticRegression().fit(X, y).score(X, y)
 acc_rff = LogisticRegression().fit(Z, y).score(Z, y)
 print(acc_raw, acc_rff)
 ```
+
+    0.498 0.73
+    
 
 You can see that the "kernelized" logistic regression was able to fit its nonlinear data much more closely. Thanks for reading!
