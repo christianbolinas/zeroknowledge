@@ -1,3 +1,8 @@
+---
+layout: post
+title: "The Fast Fourier Transform and Kernels"
+date: 2025-11-24
+---
 Blah blah I didn't use AI to write this, English or Python.  I did use AI
 alongside youtube videos to learn about the FFT algorithm Pants-on-head AI use
 bad. Thoughtful AI use good. Etc etc
