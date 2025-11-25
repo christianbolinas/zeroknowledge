@@ -682,7 +682,6 @@ their difference/distance directly.
 import scipy
 ```
 
-
 ```python
 def matern(dist, nu=0.1, length_scale=1.0):
     scale = np.sqrt(2*nu) * dist / length_scale
@@ -692,9 +691,10 @@ def matern(dist, nu=0.1, length_scale=1.0):
 def kernel_sample_transformer(kernel_function, X, grid_size=8192, z_dim=500):
     '''
     X is univariate array of vals (to be used in predicting y). 
-    Univariate just for demoing toy problem.
+    Univariate just for demoing toy problem; can be applied on features individually
     '''
     # discretize `kernel_function` by evaluating it on a grid
+    np.random.seed(69)
     X_range = np.max(X) - np.min(X)
     grid = np.linspace(1e-10, X_range, grid_size)
     kernel_discretized = kernel_function(grid)
@@ -720,14 +720,17 @@ def kernel_sample_transformer(kernel_function, X, grid_size=8192, z_dim=500):
 from sklearn.datasets import make_circles
 from sklearn.linear_model import LogisticRegression
 
-X, y = make_circles(n_samples=500, noise=0.1, random_state=69)
-Z = kernel_sample_transformer(lambda r: matern(r, nu=0.1, length_scale=0.5), X[:, 0], z_dim=100)
-acc_raw = LogisticRegression().fit(X, y).score(X, y)
-acc_rff = LogisticRegression().fit(Z, y).score(Z, y)
+X, y = make_circles(n_samples=1000, noise=0.1, random_state=69)
+X_train, X_test, y_train, y_test = sklearn.model_selection.train_test_split(X, y, random_state=69)
+k = lambda r: matern(r, nu=0.1, length_scale=0.5)
+Z_train = np.hstack([kernel_sample_transformer(k, X_train[:, 0], z_dim=100), kernel_sample_transformer(k, X_train[:, 1], z_dim=1000)])
+Z_test = np.hstack([kernel_sample_transformer(k, X_test[:, 0], z_dim=100), kernel_sample_transformer(k, X_test[:, 1], z_dim=1000)])
+acc_raw = LogisticRegression().fit(X_train, y_train).score(X_test, y_test)
+acc_rff = LogisticRegression().fit(Z_train, y_train).score(Z_test, y_test)
 print(acc_raw, acc_rff)
 ```
 
-    0.498 0.73
+    0.432 0.844
     
 
 You can see that the "kernelized" logistic regression was able to fit its nonlinear data much more closely. Thanks for reading!
