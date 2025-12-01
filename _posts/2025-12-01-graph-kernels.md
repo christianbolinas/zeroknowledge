@@ -3,9 +3,6 @@ layout: post
 title: "Kernels vs. GPUs and Gigantic Foundation Models"
 date: 2025-11-24
 ---
-
-# Foundation Models vs. Graph Kernels
-
 I feel like my blog posts are getting increasingly "dependency hell"-ish, in
 that I'm doing an increasingly poor job of making each post's subject matter's
 prerequisite knowledge self-contained in the post, in the name of having a
