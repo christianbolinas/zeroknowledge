@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Kernels vs. GPUs and Gigantic Foundation Models"
-date: 2025-11-24
+date: 2025-12-01
 ---
 I feel like my blog posts are getting increasingly "dependency hell"-ish, in
 that I'm doing an increasingly poor job of making each post's subject matter's
